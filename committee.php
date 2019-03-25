@@ -42,23 +42,5 @@ $opts->execute();
 	<tr><th>First Name</th><th>Last Name</th></tr>
 </table>
 
-<script>
-function viewCommitteeButton() {
-  
 
-  var comm = document.getElementById("subcom");
-  var subCommittee = comm.options[comm.selectedIndex].value;
-  document.cookie = "subCommittee";
-  
-
-  <?php
-  	$sub = "hello";
-  	echo $sub;
-  	$sql = "SELECT "
-  ?>
-var comTable = document.getElementById("committeeTable");
-  comTable.style.display = "table";
-
-  
-} 
 </script>
