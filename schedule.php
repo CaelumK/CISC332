@@ -5,11 +5,11 @@
 </head>
 <body>
 
-<h1> Organising Committee </h1>
+<h1> Conference Schedule </h1>
 
 <a href="index.html" class="button">Home</a>
 
-<p>Choose a Sub-Committee to view its members:</p>
+<p>Choose a Date to view the schedule:</p>
 
 
 <?php
@@ -18,7 +18,7 @@
 $pdo = new PDO('mysql:host=localhost;dbname=conferencedb', "root", "");
 
 #the query 
-$sql = "SELECT sub_committee_name FROM sub_committee";
+$sql = "SELECT slot_date FROM time_slot";
 
 #create the query
 $opts = $pdo->prepare($sql);
@@ -26,12 +26,12 @@ $opts->execute();
 ?>
 
 
-<form action="committee.php" method='post'>
-	<select name="committee">
+<form action="schedule.php" method='post'>
+	<select name="day">
 		<option>
 			<?php
 			while ($row = $opts->fetch()) {
-				echo "<option value=".$row["sub_committee_name"].">" . $row["sub_committee_name"] ."</option>";
+				echo "<option value=".$row["slot_date"].">" . $row["slot_date"] ."</option>";
 			}
 			?>
 	</select>
@@ -43,17 +43,17 @@ $opts->execute();
 
 <?php
 	error_reporting(0);
-	echo "<h3>The Following Are all memebers on the ".$_POST['committee']." sub committee</h3>";
-	echo "<table cellspacing = 15><tr><th>First Name</th><th>Last Name</th></tr>";
+	echo "<h3>The planned schedule for ".$_POST['day']."</h3>";
+	echo "<table cellspacing = 15><tr><th>Session Name</th><th>Start Time</th><th>End Time</th><th>Location</th></tr>";
 
 	$pdo = new PDO('mysql:host=localhost;dbname=conferencedb', "root", "");
 
-	$sql = "select * from participation where sub_committee_name = '".$_POST['committee']."'";
+	$sql = "select * from time_slot where slot_date = '".$_POST['day']."'";
 	$stmt = $pdo->prepare($sql);   #create the query
 	$stmt->execute();   #bind the parameters
 
 	while ($row = $stmt->fetch()) {
-		echo "<tr><td>".$row["first_name"]."</td><td>".$row["last_name"]."</td></tr>";
+		echo "<tr><td>".$row["session_name"]."</td><td>".$row["start_time"]."</td><td>".$row["end_time"]."</td><td>".$row["location"]."</td></tr>";
 	}
 
 ?>
