@@ -25,22 +25,36 @@ $opts = $pdo->prepare($sql);
 $opts->execute();
 ?>
 
-<select id='subcom'>
-	<?php
-		while ($row = $opts->fetch()) {
-			echo "<option>" . $row["sub_committee_name"] ."</option>";
-		}
-	?>
-</select>
 
-<button onclick="viewCommitteeButton()">View</button>
+<form action="committee.php" method='post'>
+	<select name="committee">
+		<option>
+			<?php
+			while ($row = $opts->fetch()) {
+				echo "<option value=".$row["sub_committee_name"].">" . $row["sub_committee_name"] ."</option>";
+			}
+			?>
+	</select>
+	<input type="submit" />
+</form>
 
 <br>
 <br>
 
-<table id="committeeTable" hidden>
-	<tr><th>First Name</th><th>Last Name</th></tr>
-</table>
+<?php
+echo "<h3>The Following Are all memebers on the ".$_POST['committee']." sub committee</h3>";
+echo "<table cellspacing = 15><tr><th>First Name</th><th>Last Name</th></tr>";
 
+$pdo = new PDO('mysql:host=localhost;dbname=conferencedb', "root", "");
 
-</script>
+$sql = "select * from participation where sub_committee_name = '".$_POST['committee']."'";
+$stmt = $pdo->prepare($sql);   #create the query
+$stmt->execute();   #bind the parameters
+
+while ($row = $stmt->fetch()) {
+	echo "<tr><td>".$row["first_name"]."</td><td>".$row["last_name"]."</td></tr>";
+}
+?>
+
+</body>
+</html>
