@@ -43,7 +43,7 @@ $opts->execute();
 
 <?php
 	error_reporting(0);
-	echo "<h3>The Following Are all memebers on the ".$_POST['committee']." sub committee</h3>";
+	echo "<h3>The following are all memebers on the ".$_POST['committee']." sub committee</h3>";
 	echo "<table cellspacing = 15><tr><th>First Name</th><th>Last Name</th></tr>";
 
 	$pdo = new PDO('mysql:host=localhost;dbname=conferencedb', "root", "");

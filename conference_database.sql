@@ -130,51 +130,91 @@ CREATE TABLE sponsorship_level (
 );
 
 insert into organising_committee values
-  (1000, 'Erin', 'Battle'),
-  (1001, 'Braeden', 'Ng'),
-  (1002, 'Adam', 'Hardy'),
-  (1003, 'Caelum', 'Kamps'),
-  (1004, 'Alex', 'Amos');
+  (1, 'Erin', 'Battle'),
+  (2, 'Braeden', 'Ng'),
+  (3, 'Adam', 'Hardy'),
+  (4, 'Caelum', 'Kamps'),
+  (5, 'Alex', 'Amos');
 
 insert into company values
-  (3000, 'Amazon', 0);
+  (1, 'Amazon', 0),
+  (2,'Microsoft',0),
+  (3, 'Snapchat',0),
+  (4, 'Facebook',0),
+  (5, 'Google',0),
+  (6,'Instagram',0),
+  (7,'Apple',0),
+  (8,'Bell',0),
+  (9,'Rogers',0),
+  (10,'Shopify',0);
+
 
 insert into sponsorship_tier values
-  ('7000', 1000, 0),
-  ('7001', 3000, 3),
-  ('7002', 5000, 4),
-  ('7003', 10000, 5);
+  ('1', 1000, 0),
+  ('2', 3000, 3),
+  ('3', 5000, 4),
+  ('4', 10000, 5);
 
 insert into sub_committee values
-  (5000, 'Speakers', 1000),
-  (5001, 'Sponsorship', 1004);
+  (1, 'Speakers', 1),
+  (2, 'Sponsorship', 2),
+  (3, 'Logistics',4);
 
 insert into hotel_room values
-  (101, 2),
-  (102, 1);
+(101,2),
+(102,1),
+(103,2),
+(104,2),
+(105,2),
+(106,2),
+(107,2),
+(108,2);
+
 
 insert into attendees values
-  (2000, 'Liam', 'Beckman', 'student', 50),
-  (2001, 'Jeff', 'Bezos', 'sponsor', 0),
-  (2002, 'Chris', 'Maltais', 'professional', 100),
-  (2003, 'Graeme', 'Strathdee', 'student', 50),
-  (2004, 'Brendan ', 'May', 'professional ', 100),
-  (2005, 'Rachel', 'Ng', 'sponsor', 0),
-  (2006, 'Erin', 'Battle', 'student', 50);
+  (1, 'Liam', 'Beckman', 'student', 50),
+  (2, 'Jeff', 'Bezos', 'sponsor', 0),
+  (3, 'Chris', 'Maltais', 'professional', 100),
+  (4, 'Graeme', 'Strathdee', 'student', 50),
+  (5, 'Brendan ', 'May', 'professional ', 100),
+  (6, 'Rachel', 'Ng', 'sponsor', 0),
+  (7, 'Erin', 'Battle', 'student', 50),
+  (8, 'Caelum', 'Kamps',  'student', 50),
+  (9,'Michael','Bennett','professional ', 100),
+  (10,'Sam','Strike','student', 50),
+  (11,'John','Doe', 'sponsor', 0),
+  (12,'Jimmy','Johnson', 'sponsor', 0),
+  (13,'William','Kent', 'student', 50),
+  (14,'Thom','Stark','professional', 100),
+  (15,'Holden','Chang','student', 50),
+  (16,'Sim','Sam','student', 50),
+  (17,'Kate','Perry','student', 50),
+  (18,'Brian','Sam','student', 50),
+  (19,'Kit','Harrington','professional', 100),
+  (20,'Tony','Michaels','student', 100);
+
+
 
 insert into session values
-  (6000, 'Web development'),
-  (6001, 'Dynamic Programming');
+(1, 'Web development 1'),
+(2, 'HTML Programming'),
+(3, 'Python Programming'),
+(4,'Apple Release Event'),
+(5,'Microsoft Demos'),
+(6, 'Web development 2'),
+(7, 'Dynamic Programming'),
+(8,'Advanced Algorithms');
+
 
 insert into participation values
-  (1000, 5000, 'Erin', 'Battle', 'Speakers'),
-  (1001, 5000, 'Braeden', 'Ng', 'Speakers'),
-  (1002, 5001, 'Adam', 'Hardy', 'Sponsorship'),
-  (1003, 5000, 'Caelum', 'Kamps', 'Speakers'),
-  (1004, 5001, 'Alex', 'Amos', 'Sponsorship');
+  (1, 1, 'Erin', 'Battle', 'Speakers'),
+  (2, 1, 'Braeden', 'Ng', 'Speakers'),
+  (3, 2, 'Adam', 'Hardy', 'Sponsorship'),
+  (4, 3, 'Caelum', 'Kamps', 'Logistics'),
+  (5, 3, 'Alex', 'Amos', 'Logistics');
 
 insert into attending values
-  (2006, 1000, 'Erin', 'Battle');
+  (7, 1, 'Erin', 'Battle');
 
 insert into representing values
   (2001, 3000, 'Jeff', 'Bezos', 'Amazon');
@@ -189,12 +229,28 @@ insert into time_slot values
   (7001, 6001, 'Dynamic Programming', '2019/05/03', '13:00:00', '14:30:00', 'Jeffery Hall Rm 121');
 
 insert into presenting values
-  (2002, 6000, 'Chris ', 'Maltais'),
-  (2001, 6001, 'Jeff ', 'Bezos');
+  (3, 1, 'Chris ', 'Maltais'),
+  (2, 2, 'Jeff ', 'Bezos');
+  (12, 3, 'Jimmy ', 'Johnson');
+  (11, 4, 'John ', 'Doe');
+  (6, 5, 'Rachel ', 'Ng');
+  (3, 6, 'Chris ', 'Maltais');
+  (2, 7, 'Jeff ', 'Bezos');
+  (12, 8, 'Jimmy ', 'John');
+
 
 insert into job_ads values
-  (4000, 3000, 'Database developer', 'Vancouver', 'BC', 32),
-  (5000, 3000, 'Marketing Intern', 'Toronto', 'ON', 16);
+  (1, 1, 'Database developer', 'Vancouver', 'BC', 32),
+  (2, 2, 'Marketing Intern', 'Toronto', 'ON', 16);
 
 insert into sponsorship_level values
-  (3000, '7002');
+  (1, '3'),
+  (2,'1'),
+  (3,'2'),
+  (4,'4'),
+  (5,'1'),
+  (6,'2'),
+  (7,'2'),
+  (8,'1'),
+  (9,'3'),
+  (10,'4');
