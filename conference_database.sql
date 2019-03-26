@@ -106,7 +106,7 @@ CREATE TABLE presenting (
   session_ID int not null,
   first_name varchar(20),
   last_name varchar(50),
-  primary key (attendee_ID),
+  primary key (session_ID),
   foreign key (attendee_ID) references attendees (attendee_ID),
   foreign key (session_ID) references session (session_ID)
 );
@@ -167,8 +167,8 @@ insert into hotel_room values
 (104,2),
 (105,2),
 (106,2),
-(107,2),
-(108,2);
+(107,2);
+
 
 
 insert into attendees values
@@ -183,7 +183,7 @@ insert into attendees values
   (9,'Michael','Bennett','professional ', 100),
   (10,'Sam','Strike','student', 50),
   (11,'John','Doe', 'sponsor', 0),
-  (12,'Jimmy','Johnson', 'sponsor', 0),
+  (12,'Jimmy','Johnson','sponsor', 0),
   (13,'William','Kent', 'student', 50),
   (14,'Thom','Stark','professional', 100),
   (15,'Holden','Chang','student', 50),
@@ -191,7 +191,7 @@ insert into attendees values
   (17,'Kate','Perry','student', 50),
   (18,'Brian','Sam','student', 50),
   (19,'Kit','Harrington','professional', 100),
-  (20,'Tony','Michaels','student', 100);
+  (20,'Tony','Michaels','student', 50);
 
 
 
@@ -217,26 +217,51 @@ insert into attending values
   (7, 1, 'Erin', 'Battle');
 
 insert into representing values
-  (2001, 3000, 'Jeff', 'Bezos', 'Amazon');
+  (2, 1, 'Jeff', 'Bezos', 'Amazon'),
+  (6,2,'Rachel','Ng','Snapchat'),
+  (11,7,'John','Doe','Apple'),
+  (12,3,'Jimmy','Johnson','Snapchat');
 
 insert into accommodation values
-  (2000, 101, 'Liam', 'Beckman'),
-  (2003, 101, 'Graeme ', 'Strathdee'),
-  (2006, 102, 'Erin', 'Battle');
+  (1, 101, 'Liam', 'Beckman'),
+  (2, 101, 'Graeme', 'Strathdee'),
+  (7, 102, 'Erin', 'Battle'),
+  (8,103,'Caelum','Kamps'),
+  (10,103,'Sam','Strike'),
+  (13,103,'William','Kent'),
+  (15,104,'Holden','Chang'),
+(16,105,'Sim','Sam'),
+(17,106,'Kate','Perry'),
+(18,107,'Brian','Sam'),
+(20,107,'Tony','Michaels');
+
+
 
 insert into time_slot values
-  (7000, 6000, 'Web Development', '2019/05/03', '09:00:00', '10:30:00', 'Jeffery Hall Rm 120'),
-  (7001, 6001, 'Dynamic Programming', '2019/05/03', '13:00:00', '14:30:00', 'Jeffery Hall Rm 121');
+  (1, 1, 'Web Development', '2019/05/03', '09:00:00', '10:30:00', 'Jeffery Hall Rm 120'),
+  (2, 2, 'HTML Programming', '2019/05/03', '13:00:00', '14:30:00', 'Jeffery Hall Rm 121'),
+  (3, 3, 'Python Programming', '2019/05/03', '15:00:00', '16:30:00', 'Jeffery Hall Rm 120'),
+  (4, 4, 'Apple Release Event', '2019/05/03', '19:00:00', '20:30:00', 'Jeffery Hall Rm 121'),
+  (5, 5, 'Microsoft Demos', '2019/05/04', '09:00:00', '10:30:00', 'Jeffery Hall Rm 120'),
+  (6, 6, 'Web development 2', '2019/05/04', '13:00:00', '14:30:00', 'Jeffery Hall Rm 121'),
+  (7, 7, 'Dynamic Programming', '2019/05/04','15:00:00', '16:30:00', 'Jeffery Hall Rm 120'),
+  (8, 8, 'Advanced Algorithms', '2019/05/04', '19:00:00', '20:30:00', 'Jeffery Hall Rm 121');
+
+
+
+
+
+
 
 insert into presenting values
   (3, 1, 'Chris ', 'Maltais'),
-  (2, 2, 'Jeff ', 'Bezos');
-  (12, 3, 'Jimmy ', 'Johnson');
-  (11, 4, 'John ', 'Doe');
-  (6, 5, 'Rachel ', 'Ng');
-  (3, 6, 'Chris ', 'Maltais');
-  (2, 7, 'Jeff ', 'Bezos');
-  (12, 8, 'Jimmy ', 'John');
+  (2, 2, 'Jeff ', 'Bezos'),
+  (12, 3, 'Jimmy ', 'Johnson'),
+  (11, 4, 'John ', 'Doe'),
+  (6, 5, 'Rachel ', 'Ng'),
+  (3, 6, 'Chris ', 'Maltais'),
+  (2, 7, 'Jeff ', 'Bezos'),
+  (12, 8, 'Jimmy ', 'Johnson');
 
 
 insert into job_ads values
