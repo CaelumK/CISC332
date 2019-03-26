@@ -28,7 +28,6 @@ $opts->execute();
 
 <form action="committee.php" method='post'>
 	<select name="committee">
-		<option>
 			<?php
 			while ($row = $opts->fetch()) {
 				echo "<option value=".$row["sub_committee_name"].">" . $row["sub_committee_name"] ."</option>";

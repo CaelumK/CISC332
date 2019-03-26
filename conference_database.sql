@@ -38,7 +38,11 @@ CREATE TABLE attendees (
   last_name varchar(50),
   type varchar(20),
   fee int,
-  primary key (attendee_ID)
+  company_ID int,
+  primary key (attendee_ID),
+  foreign key (company_ID) references company (company_ID)
+  on delete cascade
+  
 );
 
 CREATE TABLE session (
@@ -77,6 +81,7 @@ CREATE TABLE representing (
   primary key (attendee_ID),
   foreign key (attendee_ID) references attendees (attendee_ID),
   foreign key (company_ID) references company (company_ID)
+  on delete cascade
 );
 
 CREATE TABLE accommodation (
@@ -99,6 +104,7 @@ CREATE TABLE time_slot (
   location varchar(50),
   primary key (slot_ID),
   foreign key (session_ID) references session (session_ID)
+  on delete cascade
 );
 
 CREATE TABLE presenting (
@@ -107,8 +113,8 @@ CREATE TABLE presenting (
   first_name varchar(20),
   last_name varchar(50),
   primary key (session_ID),
-  foreign key (attendee_ID) references attendees (attendee_ID),
-  foreign key (session_ID) references session (session_ID)
+  foreign key (attendee_ID) references attendees (attendee_ID)
+  on delete cascade
 );
 
 CREATE TABLE job_ads (
@@ -120,13 +126,15 @@ CREATE TABLE job_ads (
   pay_rate decimal(4,2),
   primary key (job_ID),
   foreign key (company_ID) references company (company_ID)
+  on delete cascade
 );
 
 CREATE TABLE sponsorship_level (
   company_ID int not null,	
   tier_ID varchar(20) not  null,
   primary key (company_ID),
-  foreign key (tier_ID) references sponsorship_tier (tier_ID)
+  foreign key (company_ID) references company (company_ID)
+  on delete cascade
 );
 
 insert into organising_committee values
@@ -172,26 +180,26 @@ insert into hotel_room values
 
 
 insert into attendees values
-  (1, 'Liam', 'Beckman', 'student', 50),
-  (2, 'Jeff', 'Bezos', 'sponsor', 0),
-  (3, 'Chris', 'Maltais', 'professional', 100),
-  (4, 'Graeme', 'Strathdee', 'student', 50),
-  (5, 'Brendan ', 'May', 'professional ', 100),
-  (6, 'Rachel', 'Ng', 'sponsor', 0),
-  (7, 'Erin', 'Battle', 'student', 50),
-  (8, 'Caelum', 'Kamps',  'student', 50),
-  (9,'Michael','Bennett','professional ', 100),
-  (10,'Sam','Strike','student', 50),
-  (11,'John','Doe', 'sponsor', 0),
-  (12,'Jimmy','Johnson','sponsor', 0),
-  (13,'William','Kent', 'student', 50),
-  (14,'Thom','Stark','professional', 100),
-  (15,'Holden','Chang','student', 50),
-  (16,'Sim','Sam','student', 50),
-  (17,'Kate','Perry','student', 50),
-  (18,'Brian','Sam','student', 50),
-  (19,'Kit','Harrington','professional', 100),
-  (20,'Tony','Michaels','student', 50);
+  (1, 'Liam', 'Beckman', 'student', 50,null),
+  (2, 'Jeff', 'Bezos', 'sponsor', 0,1),
+  (3, 'Chris', 'Maltais', 'professional', 100, null),
+  (4, 'Graeme', 'Strathdee', 'student', 50,null),
+  (5, 'Brendan ', 'May', 'professional ', 100,null),
+  (6, 'Rachel', 'Ng', 'sponsor', 0,3),
+  (7, 'Erin', 'Battle', 'student', 50, null),
+  (8, 'Caelum', 'Kamps',  'student', 50, null),
+  (9,'Michael','Bennett','professional ', 100, null),
+  (10,'Sam','Strike','student', 50, null),
+  (11,'John','Doe', 'sponsor', 0, 7),
+  (12,'Jimmy','Johnson','sponsor', 0, 3),
+  (13,'William','Kent', 'student', 50, null),
+  (14,'Thom','Stark','professional', 100, null),
+  (15,'Holden','Chang','student', 50, null),
+  (16,'Sim','Sam','student', 50, null),
+  (17,'Kate','Perry','student', 50, null),
+  (18,'Brian','Sam','student', 50, null),
+  (19,'Kit','Harrington','professional', 100, null),
+  (20,'Tony','Michaels','student', 50, null);
 
 
 
@@ -246,11 +254,6 @@ insert into time_slot values
   (6, 6, 'Web development 2', '2019/05/04', '13:00:00', '14:30:00', 'Jeffery Hall Rm 121'),
   (7, 7, 'Dynamic Programming', '2019/05/04','15:00:00', '16:30:00', 'Jeffery Hall Rm 120'),
   (8, 8, 'Advanced Algorithms', '2019/05/04', '19:00:00', '20:30:00', 'Jeffery Hall Rm 121');
-
-
-
-
-
 
 
 insert into presenting values
