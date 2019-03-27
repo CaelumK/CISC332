@@ -18,7 +18,7 @@
 $pdo = new PDO('mysql:host=localhost;dbname=conferencedb', "root", "");
 
 #the query 
-$sql = "SELECT slot_date FROM time_slot";
+$sql = "SELECT DISTINCT slot_date FROM time_slot";
 
 #create the query
 $opts = $pdo->prepare($sql);
@@ -28,7 +28,6 @@ $opts->execute();
 
 <form action="schedule.php" method='post'>
 	<select name="day">
-		<option>
 			<?php
 			while ($row = $opts->fetch()) {
 				echo "<option value=".$row["slot_date"].">" . $row["slot_date"] ."</option>";

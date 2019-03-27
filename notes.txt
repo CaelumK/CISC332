@@ -3,3 +3,9 @@ Notes
 the session still stays even if you delete the presenter
 
 need to allow to select a company for adding a sponsor attendee
+
+<?php
+						while ($row = $stmt->fetch()) {
+							echo '<option value='.$row['room_number'].'>'.$row['room_number'].'</option>';
+						}
+					?>

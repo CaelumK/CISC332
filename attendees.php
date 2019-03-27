@@ -9,15 +9,9 @@
 
 <a href="index.html" class="button">Home</a>
 
-<h3>Add a new attendee:<h3>
-<form action="attendees.php" method="post">
-	<p>First name:</p>
-	<input type="text" name="first_name">
-	<br>
-	<p>Last name:</p>
-	<input type="text" name="last_name">
-	<br>
-	<p>Attendee Type:</p>
+<h3>Add a new attendee:</h3>
+<form action="add_drop_attendees.php" method="post">
+	<p>Select attendee type to add:</p>
 	<select type ="text", name="type">
 		<option value = "student">Student</option>
 		<option value = "professional">Professional</option>
@@ -35,7 +29,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=conferencedb', "root", "");
 # Insert a new value into database
 if (strlen($_POST['first_name']) > 0) {
 	# Fetching the biggest attendee identifier
-	$sql = "SELECT attendee_id, first_name, last_name
+	$sql = "SELECT attendee_id
 		FROM attendees
 		WHERE attendee_id = ALL(SELECT max(attendee_id) AS max_id FROM attendees)";
 
@@ -47,20 +41,32 @@ if (strlen($_POST['first_name']) > 0) {
 	$attendee_id = $row['attendee_id']+1;
 
 	# Determining amount needed to pay
-	if ($_POST['type'] == 'student') {
+	if (strlen($_POST['room_number']) > 0) {
 		$fee = 50;
-	}	elseif ($_POST['type'] == 'professional') {
+		$_POST['type'] = 'student';
+		# Inserting new attendee into table
+		$sql = "INSERT INTO attendees values
+				(".$attendee_id.",'".$_POST['first_name']."','".$_POST['last_name']."','".$_POST['type']."',".$fee.",null);
+				INSERT INTO accommodation values
+				(".$attendee_id.",".$_POST['room_number'].",'".$_POST['first_name']."','".$_POST['last_name']."')";
+				
+	}	elseif (strlen($_POST['company_ID']) > 0) {
 		$fee = 100;
+		$_POST['type'] = 'sponsor';
+		$sql = "INSERT INTO attendees values
+				(".$attendee_id.",'".$_POST['first_name']."','".$_POST['last_name']."','".$_POST['type']."',".$fee.",".$_POST['company_ID'].")";
 	}	else {
 		$fee = 0;
+		$_POST['type'] = 'professional';
+		$sql = "INSERT INTO attendees values
+				(".$attendee_id.",'".$_POST['first_name']."','".$_POST['last_name']."','".$_POST['type']."',".$fee.",null)";
 	}
+	
 	
 	# Need to make this dynamic
 	$company_ID = null;
 	
-	# Inserting new attendee into table
-	$sql = "INSERT INTO attendees values
-		(".$attendee_id.",'".$_POST['first_name']."','".$_POST['last_name']."','".$_POST['type']."',".$fee.",null)";
+	
 	
 	$stmt = $pdo->prepare($sql);   #create the query
 	$stmt->execute();   #bind the parameters
