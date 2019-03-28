@@ -7,7 +7,7 @@
 
 <h1> Organising Committee </h1>
 
-<a href="index.html" class="button">Home</a>
+<a href="index.php" class="button">Home</a>
 
 <p>Choose a Sub-Committee to view its members:</p>
 
@@ -28,6 +28,7 @@ $opts->execute();
 
 <form action="committee.php" method='post'>
 	<select name="committee">
+			<option>--select--</option>
 			<?php
 			while ($row = $opts->fetch()) {
 				echo "<option value=".$row["sub_committee_name"].">" . $row["sub_committee_name"] ."</option>";

@@ -57,9 +57,9 @@ CREATE TABLE participation (
   first_name varchar(20),
   last_name varchar(50),
   sub_committee_name varchar(50),
-  primary key (person_ID),
   foreign key (person_ID) references organising_committee (person_ID),
   foreign key (sub_committee_ID) references sub_committee (sub_committee_ID)
+  on delete cascade
 );
 
 CREATE TABLE attending (
@@ -67,9 +67,9 @@ CREATE TABLE attending (
   person_ID int not null,
   first_name varchar(20),
   last_name varchar(50),
-  primary key (attendee_ID),
   foreign key (attendee_ID) references attendees (attendee_ID),
   foreign key (person_ID) references organising_committee (person_ID)
+  on delete cascade
 );
 
 CREATE TABLE representing (
@@ -78,7 +78,6 @@ CREATE TABLE representing (
   first_name varchar(20),
   last_name varchar(50),
   company_name varchar(50),
-  primary key (attendee_ID),
   foreign key (attendee_ID) references attendees (attendee_ID),
   foreign key (company_ID) references company (company_ID)
   on delete cascade
@@ -89,9 +88,9 @@ CREATE TABLE accommodation (
   room_number int not null,
   first_name varchar(20),
   last_name varchar(50),
-  primary key (attendee_ID),
   foreign key (attendee_ID) references attendees (attendee_ID),
   foreign key (room_number) references hotel_room (room_number)
+  on delete cascade
 );
 
 CREATE TABLE time_slot (
@@ -112,7 +111,7 @@ CREATE TABLE presenting (
   session_ID int not null,
   first_name varchar(20),
   last_name varchar(50),
-  primary key (session_ID),
+  foreign key (session_ID) references session (session_ID),
   foreign key (attendee_ID) references attendees (attendee_ID)
   on delete cascade
 );
@@ -132,7 +131,6 @@ CREATE TABLE job_ads (
 CREATE TABLE sponsorship_level (
   company_ID int not null,	
   tier_ID varchar(20) not  null,
-  primary key (company_ID),
   foreign key (company_ID) references company (company_ID)
   on delete cascade
 );

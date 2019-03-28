@@ -7,12 +7,13 @@
 
 <h1> Conference Attendees </h1>
 
-<a href="index.html" class="button">Home</a>
+<a href="index.php" class="button">Home</a>
 
 <h3>Add a new attendee:</h3>
 <form action="add_drop_attendees.php" method="post">
 	<p>Select attendee type to add:</p>
 	<select type ="text", name="type">
+		<option>--select--</option>
 		<option value = "student">Student</option>
 		<option value = "professional">Professional</option>
 		<option value = "sponsor">Sponsor</option>
@@ -53,8 +54,13 @@ if (strlen($_POST['first_name']) > 0) {
 	}	elseif (strlen($_POST['company_ID']) > 0) {
 		$fee = 100;
 		$_POST['type'] = 'sponsor';
+		
+		# insert into attendees and representing tables
 		$sql = "INSERT INTO attendees values
-				(".$attendee_id.",'".$_POST['first_name']."','".$_POST['last_name']."','".$_POST['type']."',".$fee.",".$_POST['company_ID'].")";
+				(".$attendee_id.",'".$_POST['first_name']."','".$_POST['last_name']."','".$_POST['type']."',".$fee.",".$_POST['company_ID'].");
+				INSERT INTO representing values
+				(".$attendee_id.",".$_POST['company_ID'].",'".$_POST['first_name']."','".$_POST['last_name']."',null)";
+		
 	}	else {
 		$fee = 0;
 		$_POST['type'] = 'professional';

@@ -7,7 +7,8 @@
 
 <h1> Conference Schedule </h1>
 
-<a href="index.html" class="button">Home</a>
+<a href="index.php" class="button">Home</a>
+<a href="editSchedule.php" class="button">Edit Schedule</a>
 
 <p>Choose a Date to view the schedule:</p>
 
@@ -28,6 +29,7 @@ $opts->execute();
 
 <form action="schedule.php" method='post'>
 	<select name="day">
+	<option>--select--</option>
 			<?php
 			while ($row = $opts->fetch()) {
 				echo "<option value=".$row["slot_date"].">" . $row["slot_date"] ."</option>";

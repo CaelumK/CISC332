@@ -29,7 +29,7 @@ $opts->execute();
 
 <form action="accommodation.php" method='post'>
 	<select name="roomNumber">
-		<option>
+		<option>--select--</option>
 			<?php
 			while ($row = $opts->fetch()) {
 				echo "<option value=".$row["room_number"].">" . $row["room_number"] ."</option>";

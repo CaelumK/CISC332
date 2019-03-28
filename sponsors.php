@@ -8,7 +8,7 @@
 
 <h1> Company Sponsorship Levels </h1>
 
-<a href="index.html" class="button">Home</a>
+<a href="index.php" class="button">Home</a>
 
 <h2>Edit sponsors:</h2>
 <p>If removing sponsors, only need to provide the company ID.</p>
@@ -36,6 +36,7 @@ if ($_POST['action'] == 1){
 				<option value = 1>1</option>
 				<option value = 2>2</option>
 				<option value = 3>3</option>
+				<option value = 4>4</option>
 			</select>
 			<input value = 'Add', type='submit'>
 		</form>";

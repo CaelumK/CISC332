@@ -26,7 +26,8 @@
 		$opts->execute();
 		
 		echo "<p>Select Room Number:</p>
-			  <select name='room_number'>";
+			  <select name='room_number'>
+			  <option>--select--</option>";
 			
 		while ($row = $opts->fetch()) {
 			echo "<option value=".$row["room_number"].">" . $row["room_number"] ."</option>";
@@ -40,7 +41,8 @@
 		$opts = $pdo->prepare($sql);
 		$opts->execute();
 		echo 
-		"<select name='company_ID'>";
+		"<select name='company_ID'>
+		<option>--select--</option>";
 		while ($row = $opts->fetch()) {
 			echo "<option value=".$row["company_ID"].">" . $row["name"] ."</option>";
 		}

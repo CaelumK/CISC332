@@ -7,7 +7,7 @@
 
 <h1> Job Postings </h1>
 
-<a href="index.html" class="button">Home</a>
+<a href="index.php" class="button">Home</a>
 
 <?php
 
@@ -25,7 +25,7 @@ $opts->execute();
 
 <form action="jobs.php" method='post'>
 	<select name="company">
-		<option>
+		<option>--select--</option>
 			<?php
 			while ($row = $opts->fetch()) {
 				echo "<option value=".$row["name"].">" . $row["name"] ."</option>";
