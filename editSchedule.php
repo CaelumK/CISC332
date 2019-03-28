@@ -1,14 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link href="styles.css" type="text/css" rel="stylesheet">
 </head>
+<style>
+    h1,h3{
+      font-family: Verdana, Geneva, sans-serif;
+      color: black;
+      text-align: center;
+    }
+
+    p{
+      font-family: Verdana, Geneva, sans-serif;
+      color: black;
+      text-align: center;
+    }
+    .button {
+      border-radius: 25px;
+      background-color: white;
+      border: 1px solid black;
+      color: black;
+      padding: 5px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      
+    }
+    form{
+        text-align: center;
+    }
+    table{
+        border: 1px solid black;
+        border-collapse: collapse;
+        width: 50%;
+        text-align: center;
+        font-size: 20px;
+        margin: 1em auto;
+
+    }
+    th{
+        border: 1px solid black;
+        padding: 10px;
+        text-align: center;
+        vertical-align: center;
+    }
+    td,tr{
+        border: 1px solid black;
+        padding: 5px;
+        text-align: center;
+        vertical-align: center;
+    }
+</style>
 <body>
 
 <h1> Conference Schedule </h1>
 
 
-<a href="schedule.php" class="button">Back to Schedule</a>
+<p><a href="schedule.php" class="button">Back to Schedule</a></p>
 
 <p>Choose an Event to Edit:</p>
 
@@ -53,15 +101,15 @@ $opts->execute();
 	$stmt->execute();   #bind the parameters
     $stmt=$stmt->fetch();
 
-    echo "Editing session: ".$stmt["session_name"];
+    echo "<p>Editing session: ".$stmt["session_name"]."</p>";
     echo
     "<br>
     <form action='editSchedule.php' method='post'>
-        Loction: <input type='text' name='location' value = '".$stmt['location']."'><br>
-        Date: <input type='text' name='date' value = ".$stmt['slot_date']."><br>
-        Start Time: <input type='text' name='startTime' value = ".$stmt['start_time']."><br>
-        End Time: <input type='text' name='endTime' value = ".$stmt['end_time']."><br>
-        Session_ID: <input type='text' name='session_ID' value = ".$stmt['session_ID'].">
+        <p>Location:</p> <input type='text' name='location' value = '".$stmt['location']."'><br>
+        <p>Date:</p> <input type='text' name='date' value = ".$stmt['slot_date']."><br>
+        <p>Start Time:</p> <input type='text' name='startTime' value = ".$stmt['start_time']."><br>
+        <p>End Time:</p> <input type='text' name='endTime' value = ".$stmt['end_time']."><br>
+        <p>Session_ID:</p> <input type='text' name='session_ID' value = ".$stmt['session_ID']."><br><br>
         <input type='submit'>
     </form>";
  
@@ -71,7 +119,6 @@ $opts->execute();
         $stmt = $pdo->prepare($sql);   #create the query
         $stmt->execute();   #bind the parameters
         $stmt=$stmt->fetch();
-        echo $sql;
     }
 
 

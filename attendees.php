@@ -1,13 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link href="styles.css" type="text/css" rel="stylesheet">
 </head>
+<style>
+	h1,h3{
+	  font-family: Verdana, Geneva, sans-serif;
+	  color: black;
+	  text-align: center;
+	}
+
+	p{
+	  font-family: Verdana, Geneva, sans-serif;
+	  color: black;
+	  text-align: center;
+	}
+	.button {
+	  border-radius: 25px;
+	  background-color: white;
+	  border: 1px solid black;
+	  color: black;
+	  padding: 5px 10px;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  font-size: 14px;
+	  
+	}
+	form{
+		text-align: center;
+	}
+	table{
+		border: 1px solid black;
+		border-collapse: collapse;
+		width: 75%;
+		text-align: center;
+		font-size: 20px;
+		margin: 1em auto;
+
+	}
+	th{
+		border: 1px solid black;
+		padding: 10px;
+		text-align: center;
+		vertical-align: center;
+	}
+	td{
+		border: 1px solid black;
+		padding: 5px;
+		text-align: center;
+		vertical-align: center;
+	}
+	.column {
+	  float: left;
+	  width: 33.33%;
+	}
+	.row:after {
+	  content: "";
+	  display: table;
+	  clear: both;
+	}
+</style>
 <body>
 
 <h1> Conference Attendees </h1>
 
-<a href="index.php" class="button">Home</a>
+<p><a href="index.php" class="button">Home</a></p>
 
 <h3>Add a new attendee:</h3>
 <form action="add_drop_attendees.php" method="post">
@@ -82,6 +139,8 @@ if (strlen($_POST['first_name']) > 0) {
 
 # Setting up text and table
 echo "<p>Conference attendees broken down by category:</p>";
+echo "<div class=row>";
+echo "<div class=column>";
 echo "<h3>Students</h3>";
 echo "<table cellspacing = 15><tr><th>First Name</th><th>Last Name</th></tr>";
 
@@ -94,6 +153,9 @@ while ($row = $stmt->fetch()) {
 	echo "<tr><td>".$row["first_name"]."</td><td>".$row["last_name"]."</td></tr>";
 }
 echo "</table>";
+echo "</div>";
+
+echo "<div class=column>";
 echo "<h3>Professionals</h3>";
 echo "<table cellspacing = 15><tr><th>First Name</th><th>Last Name</th></tr>";
 
@@ -107,6 +169,9 @@ while ($row = $stmt->fetch()) {
 }
 
 echo "</table>";
+echo "</div>";
+
+echo "<div class=column>";
 echo "<h3>Sponsors</h3>";
 echo "<table cellspacing = 15><tr><th>First Name</th><th>Last Name</th></tr>";
 
@@ -118,8 +183,11 @@ $stmt->execute();   #bind the parameters
 while ($row = $stmt->fetch()) {
 	echo "<tr><td>".$row["first_name"]."</td><td>".$row["last_name"]."</td></tr>";
 }
+
+echo "</table>";
+echo "</div>";
+echo "</div>";
 ?>
 
-</table>
 </body>
 </html>

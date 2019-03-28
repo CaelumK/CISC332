@@ -1,13 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link href="styles.css" type="text/css" rel="stylesheet">
 </head>
+<style>
+	h1,h3{
+	  font-family: Verdana, Geneva, sans-serif;
+	  color: black;
+	  text-align: center;
+	}
+
+	p{
+	  font-family: Verdana, Geneva, sans-serif;
+	  color: black;
+	  text-align: center;
+	}
+	.button {
+	  border-radius: 25px;
+	  background-color: white;
+	  border: 1px solid black;
+	  color: black;
+	  padding: 5px 10px;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  font-size: 14px;
+	  
+	}
+	form{
+		text-align: center;
+	}
+	table{
+		border: 1px solid black;
+		border-collapse: collapse;
+		width: 50%;
+		text-align: center;
+		font-size: 20px;
+		margin: 1em auto;
+
+	}
+	th{
+		border: 1px solid black;
+		padding: 10px;
+		text-align: center;
+		vertical-align: center;
+	}
+	td,tr{
+		border: 1px solid black;
+		padding: 5px;
+		text-align: center;
+		vertical-align: center;
+	}
+</style>
 <body>
 
 <h1> Job Postings </h1>
 
-<a href="index.php" class="button">Home</a>
+<p><a href="index.php" class="button">Home</a></p>
 
 <?php
 
@@ -40,7 +88,7 @@ $opts->execute();
 
 <?php
 	error_reporting(0);
-	echo "<h3>Jobs Specific to ".$_POST['company']."</h3>";
+	echo "<h3>Jobs specific to ".$_POST['company']."</h3>";
 	echo "<table cellspacing = 15><tr><th>Company</th><th>Position</th><th>Pay Rate</th><th>City</th><th>Province</th></tr>";
 
 	$pdo = new PDO('mysql:host=localhost;dbname=conferencedb', "root", "");

@@ -1,16 +1,65 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link href="styles.css" type="text/css" rel="stylesheet">
 </head>
+<style>
+	h1,h3{
+	  font-family: Verdana, Geneva, sans-serif;
+	  color: black;
+	  text-align: center;
+	}
+
+	p{
+	  font-family: Verdana, Geneva, sans-serif;
+	  color: black;
+	  text-align: center;
+	}
+	.button {
+	  border-radius: 25px;
+	  background-color: white;
+	  border: 1px solid black;
+	  color: black;
+	  padding: 5px 10px;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  font-size: 14px;
+	  
+	}
+	form{
+		text-align: center;
+	}
+	table{
+		border: 1px solid black;
+		border-collapse: collapse;
+		width: 50%;
+		text-align: center;
+		font-size: 20px;
+		margin: 1em auto;
+
+	}
+	th{
+		border: 1px solid black;
+		padding: 10px;
+		text-align: center;
+		vertical-align: center;
+	}
+	td,tr{
+		border: 1px solid black;
+		padding: 5px;
+		text-align: center;
+		vertical-align: center;
+	}
+</style>
 <body>
 
 
 <h1> Company Sponsorship Levels </h1>
 
-<a href="index.php" class="button">Home</a>
+<p><a href="index.php" class="button">Home</a></p>
+<p>Levels: 1 - Platinum, 2 - Gold, 3 - Silver, 4 - Bronze</p>
 
-<h2>Edit sponsors:</h2>
+<h3>Edit sponsors:</h3>
 <p>If removing sponsors, only need to provide the company ID.</p>
 <p>This will remove all representative attendees for that sponsor</p>
 
@@ -33,10 +82,10 @@ if ($_POST['action'] == 1){
 			<br>
 			<p>Sponsorship Level:</p>
 			<select type ='text', name='level'>
-				<option value = 1>1</option>
-				<option value = 2>2</option>
-				<option value = 3>3</option>
-				<option value = 4>4</option>
+				<option value = 1>Platinum</option>
+				<option value = 2>Gold</option>
+				<option value = 3>Silver</option>
+				<option value = 4>Bronze</option>
 			</select>
 			<input value = 'Add', type='submit'>
 		</form>";
