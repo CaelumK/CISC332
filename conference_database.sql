@@ -78,7 +78,6 @@ CREATE TABLE representing (
   first_name varchar(20),
   last_name varchar(50),
   company_name varchar(50),
-  foreign key (attendee_ID) references attendees (attendee_ID),
   foreign key (company_ID) references company (company_ID)
   on delete cascade
 );
@@ -230,7 +229,7 @@ insert into representing values
 
 insert into accommodation values
   (1, 101, 'Liam', 'Beckman'),
-  (2, 101, 'Graeme', 'Strathdee'),
+  (4, 101, 'Graeme', 'Strathdee'),
   (7, 102, 'Erin', 'Battle'),
   (8,103,'Caelum','Kamps'),
   (10,103,'Sam','Strike'),
