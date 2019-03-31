@@ -44,7 +44,7 @@
 		text-align: center;
 		vertical-align: center;
 	}
-	td,tr{
+	td,tr{ 
 		border: 1px solid black;
 		padding: 5px;
 		text-align: center;
@@ -71,7 +71,14 @@
 	
 	if ($_POST['type'] == 'student') {
 		#the query 
-		$sql = "SELECT DISTINCT room_number FROM accommodation";
+		$sql = "SELECT *
+				FROM hotel_room
+				JOIN(
+				SELECT room_number,COUNT(attendee_ID)
+				FROM accommodation
+				GROUP BY room_number
+				) AS rooms
+				ON hotel_room.room_number = rooms.room_number";
 
 		#create the query
 		$opts = $pdo->prepare($sql);
@@ -82,7 +89,10 @@
 			  <option>--select--</option>";
 			
 		while ($row = $opts->fetch()) {
-			echo "<option value=".$row["room_number"].">" . $row["room_number"] ."</option>";
+			if ($row['COUNT(attendee_ID)'] < $row['number_of_beds']*2){
+				echo "<option value=".$row["room_number"].">" . $row["room_number"] ."</option>";
+			}
+				
 		}
 	} elseif ($_POST['type'] == 'sponsor'){
 		echo "<p>Select Representing Company:</p>";
