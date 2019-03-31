@@ -109,7 +109,7 @@ $opts->execute();
         <p>Date:</p> <input type='text' name='date' value = ".$stmt['slot_date']."><br>
         <p>Start Time:</p> <input type='text' name='startTime' value = ".$stmt['start_time']."><br>
         <p>End Time:</p> <input type='text' name='endTime' value = ".$stmt['end_time']."><br>
-        <p>Session_ID:</p> <input type='text' name='session_ID' value = ".$stmt['session_ID']."><br><br>
+        <p>Session_ID (do not edit):</p> <input type='text' name='session_ID' value = ".$stmt['session_ID']."><br><br>
         <input type='submit'>
     </form>";
  
