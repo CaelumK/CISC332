@@ -71,14 +71,18 @@
 	
 	if ($_POST['type'] == 'student') {
 		#the query 
-		$sql = "SELECT *
-				FROM hotel_room
-				JOIN(
-				SELECT room_number,COUNT(attendee_ID)
-				FROM accommodation
-				GROUP BY room_number
-				) AS rooms
-				ON hotel_room.room_number = rooms.room_number";
+		$sql = "SELECT room_num
+				FROM(
+				    SELECT *
+				    FROM hotel_room
+				    JOIN(
+				        SELECT room_number as room_num,COUNT(attendee_ID) as people
+				        FROM accommodation
+				        GROUP BY room_number
+				    ) AS rooms
+				    ON hotel_room.room_number = rooms.room_num
+				) AS beds
+				WHERE (beds.people) < (beds.number_of_beds)*2";
 
 		#create the query
 		$opts = $pdo->prepare($sql);
@@ -89,10 +93,7 @@
 			  <option>--select--</option>";
 			
 		while ($row = $opts->fetch()) {
-			if ($row['COUNT(attendee_ID)'] < $row['number_of_beds']*2){
-				echo "<option value=".$row["room_number"].">" . $row["room_number"] ."</option>";
-			}
-				
+				echo "<option value=".$row["room_num"].">" . $row["room_num"] ."</option>";	
 		}
 	} elseif ($_POST['type'] == 'sponsor'){
 		echo "<p>Select Representing Company:</p>";

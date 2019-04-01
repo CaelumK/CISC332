@@ -62,7 +62,7 @@
 <a href="committee.php" class="button">Organising Committee</a>
 <a href="attendees.php" class="button">Attendees</a>
 <a href="schedule.php" class="button">Schedule</a>
-<a href="accommodation.php" class="button">Accomodation</a>
+<a href="accommodation.php" class="button">Accommodation</a>
 <a href="jobs.php" class="button">Jobs</a>
 <a href="sponsors.php" class="button">Sponsors</a></p>
 <br>
