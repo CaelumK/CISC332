@@ -116,7 +116,7 @@ $sponsorshipprofit=(10000*$num7['numPlatnium'])+(5000*$num6['numGold'])+(3000*$n
 
 <h3>Conference attendance breakdown and profits:</h3>
 <table cellspacing = 2 border = 1>
-	<tr><th>Students</th><th>Sponsors</th><th>Professionals</th><th>Total Profits from Attendees ($)</th></tr>
+	<tr><th>Students</th><th>Professionals</th><th>Sponsors</th><th>Total Profits from Attendees ($)</th></tr>
     <?php
         echo "<tr><th>".$num1['numStudents']."</th><th>".$num2['numProfessionals']."</th><th>".$num3['numSponsors']."</th><th>".$attendeeprofit."</th></tr>";
     ?>
